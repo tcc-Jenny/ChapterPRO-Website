@@ -9,11 +9,60 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Font & Color Variables
+# Help: https://bootstrapmade.com/color-system/
+--------------------------------------------------------------*/
+/* Fonts */
+:root {
+  --default-font: "Source Sans Pro", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Source Sans Pro", sans-serif;
+  --nav-font: "Source Sans Pro", sans-serif;
+}
+
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+:root { 
+  --background-color: #eef0f3; /* Background color for the entire website, including individual sections */
+  --default-color: #183a62; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #183a62; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #ec715e; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #eef0f3; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #eef0f3; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+}
+
+/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+:root {
+  --nav-color: #183a62;  /* The default color of the main navmenu links */
+  --nav-hover-color: #ec715e; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #183a62; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #ec715e; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+}
+
+/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
 body {
   background-color: #eef0f3;
   color: #333;
 }
+.light-background {
+  --background-color: #f9f9f9;
+  --surface-color: #ffffff;
+}
 
+.dark-background {
+  --background-color: #bfcbdc;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #404356;
+  --contrast-color: #ffffff;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
 h1,
 h2,
 h3,
@@ -107,79 +156,55 @@ span {
 }
 
 /*--------------------------------------------------------------
-# Back to top button
+# Global Sections
 --------------------------------------------------------------*/
-.back-to-top {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: 15px;
-  z-index: 996;
-  background: #1a3a63;
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  transition: all 0.4s;
-}
-
-.back-to-top i {
-  font-size: 28px;
-  color: #fff;
-  line-height: 0;
-}
-
-.back-to-top:hover {
-  background: #BFCBDC;
-  color: #fff;
-}
-
-.back-to-top.active {
-  visibility: visible;
-  opacity: 1;
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 60px 0;
+  scroll-margin-top: 77px;
+  overflow: clip;
 }
 
 /*--------------------------------------------------------------
-# Header
+# Global Header
 --------------------------------------------------------------*/
-#header {
-  background: #fff;
-  z-index: 997;
-  transition: all 0.5s ease;
+.header {
+  --background-color: rgba(255, 255, 255, 0);
+  --heading-color: #ffffff;
+  color: var(--default-color);
+  background-color: var(--background-color);
   padding: 20px 0;
+  transition: all 0.5s;
+  z-index: 997;
 }
 
-#header #logo h1 {
-  color: #1a3a63;
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: 1px;
+.header .logo {
+  line-height: 1;
+}
+
+.header .logo img {
+  max-height: 32px;
+  margin-right: 8px;
+}
+
+.header .logo h1 {
+  font-size: 30px;
   margin: 0;
+  font-weight: 700;
+  color: var(--heading-color);
 }
 
-/* org */
-#header #logo h1 a {
-  color: #2c74ab;
-  display: inline-block;
-  text-decoration: none;
+.scrolled .header {
+  box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
 }
 
-/* wizard */
-#header #logo h1 a span {
-  color: #1a3a63;
+/* Global Header on Scroll
+------------------------------*/
+.scrolled .header {
+  --background-color: rgba(255, 255, 255, 0.9);
 }
-
-#header #logo img {
-  padding: 0;
-  margin: 0;
-}
-
-#header.header-scrolled {
-  background: #fff;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
-  padding: 12px 0;
-}
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -527,133 +552,108 @@ span {
 }
 
 /*--------------------------------------------------------------
-# Sections
+# Global Sections
 --------------------------------------------------------------*/
-section {
-  overflow: hidden;
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 60px 0;
+  scroll-margin-top: 77px;
+  overflow: clip;
 }
 
-.padd-section {
-  padding-bottom: 60px;
-  padding-top: 60px;
-}
-
-@media (max-width: 992px) {
-  .padd-section {
-    padding-top: 60px;
-    padding-bottom: 60px;
-  }
-}
-
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
 .section-title {
-  margin-bottom: 40px;
-}
-
-@media (max-width: 992px) {
-  .section-title {
-    margin-bottom: 40px;
-  }
-}
-
-.section-title h2 {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 60px;
   position: relative;
 }
 
-.section-title .separator {
+.section-title h2 {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  line-height: 1px;
   margin: 0;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  position: relative;
 }
-.section-title h2:after {
+
+.section-title h2::after {
   content: "";
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 3px;
+  width: 120px;
+  height: 1px;
+  display: inline-block;
   background: var(--accent-color);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
+  margin: 4px 10px;
 }
-.separator {
-  color: #626262;
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  font-weight: 300;
-  margin-bottom: 30px;
-  text-transform: none;
-}
+
 .section-title p {
-  margin-bottom: 0;
+  color: var(--heading-color);
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: var(--heading-font);
 }
 /*--------------------------------------------------------------
-# Breadcrumbs
+# Global Page Titles & Breadcrumbs
 --------------------------------------------------------------*/
-.breadcrumbs {
-  padding: 20px 0;
-  background-color: #1a3a63;
-  min-height: 40px;
-  margin-top: 82px;
+.page-title {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 160px 0 80px 0;
+  text-align: center;
+  position: relative;
 }
 
-@media (max-width: 992px) {
-  .breadcrumbs {
-    margin-top: 68px;
-  }
+.page-title:before {
+  content: "";
+  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  position: absolute;
+  inset: 0;
 }
 
-.breadcrumbs h2 {
-  font-size: 24px;
-  font-weight: 300;
-  margin: 0;
+.page-title h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-@media (max-width: 992px) {
-  .breadcrumbs h2 {
-    margin: 0 0 10px 0;
-  }
-}
-
-.breadcrumbs ol {
+.page-title .breadcrumbs ol {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  justify-content: center;
   padding: 0;
   margin: 0;
+  font-size: 16px;
+  font-weight: 400;
 }
 
-.breadcrumbs ol li {
-  letter-spacing: 0;
-  font-size: 14px;
-}
-
-.breadcrumbs ol li+li {
+.page-title .breadcrumbs ol li+li {
   padding-left: 10px;
 }
 
-.breadcrumbs ol li+li::before {
+.page-title .breadcrumbs ol li+li::before {
+  content: "/";
   display: inline-block;
   padding-right: 10px;
-  color: #6c757d;
-  content: "/";
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
 }
 
-@media (max-width: 768px) {
-  .breadcrumbs .d-flex {
-    display: block !important;
-  }
 
-  .breadcrumbs ol {
-    display: block;
-  }
 
-  .breadcrumbs ol li {
-    display: inline-block;
-  }
-}
+
+
+
 
 /* Get Started Section
 --------------------------------*/
@@ -1703,69 +1703,96 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Footer
+# Global Footer
 --------------------------------------------------------------*/
 .footer {
-  background: #eef0f3;
-  padding-top: 20px;
-}
-
-.footer .footer-logo .navbar-brand {
-  color: #fff;
-  display: inline-block;
-  float: none;
-  font-family: "Philosopher", sans-serif;
-  font-size: 24px;
-  font-weight: 500;
-  height: 100%;
-  letter-spacing: 0.2em;
-  padding-left: 0;
-  padding-top: 0;
-}
-
-.footer .footer-logo p {
-  color: #fff;
-  font-size: 12px;
-  letter-spacing: 1px;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-size: 20px;
   text-align: center;
+  padding: 30px 0;
+  position: relative;
 }
 
-.footer .list-menu>h4 {
-  color: #215e8d;
-  padding-bottom: 20px;
-}
-
-.footer .list-menu ul li a {
-  color: #fff;
-  font-size: 12px;
-  padding-left: 5px;
-  text-decoration: none;
-  letter-spacing: 0;
-}
-
-.footer .copyrights {
-  background: #eef0f3;
-  margin-top: 20px;
-  text-align: center;
-  color: #183a62;
-  padding: 10px;
-}
-
-.footer .copyrights p,
-.footer .copyrights .credits {
-  margin: 0;
+.footer h3 {
+  font-size: 36px;
+  font-weight: 700;
+  position: relative;
   padding: 0;
-  font-family: "Open Sans", sans-serif;
-  font-weight: normal;
-  font-size: 14px;
-  letter-spacing: 0;
+  margin: 0 0 15px 0;
 }
 
-.footer .copyrights p a,
-.footer .copyrights .credits a {
-  letter-spacing: 0;
-  color: #1a3a63;
+.footer p {
+  font-size: 20;
+  font-style: italic;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.footer .social-links {
+  margin: 0 0 30px 0;
+}
+
+.footer .social-links a {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  line-height: 1;
+  margin: 0 4px;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  text-decoration: none;
+}
+
+.footer .copyright {
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.footer .credits {
+  font-size: 13px;
+  padding-top: 5px;
+}
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--accent-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+  color: var(--contrast-color);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
 }
