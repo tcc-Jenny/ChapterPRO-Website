@@ -175,7 +175,7 @@ h6 {
 /* Global Header on Scroll
 ------------------------------*/
 .scrolled .header {
-  --background-color: rgba(255, 255, 255, 0.9);
+  --background-color: #ffffff;
 }
 
 /*--------------------------------------------------------------
@@ -203,8 +203,8 @@ h6 {
   .navmenu a,
   .navmenu a:focus {
     color: var(--nav-color);
-    padding: 8px 20px;
-    font-size: 14px;
+    padding: 8px 8px;
+    font-size: 16px;
     font-family: var(--nav-font);
     font-weight: 400;
     display: flex;
@@ -212,7 +212,7 @@ h6 {
     justify-content: space-between;
     white-space: nowrap;
     transition: 0.3s;
-    border-radius: 50px;
+    border-radius: 5px;
   }
 
   .navmenu a i,
@@ -226,12 +226,12 @@ h6 {
   .navmenu li:hover>a,
   .navmenu .active,
   .navmenu .active:focus {
-    background-color: var(--nav-hover-color);
+    background-color: #ec715ec8;;
   }
 
   .navmenu .dropdown ul {
     margin: 0;
-    padding: 10px 0;
+    padding: 5px 0;
     background: var(--nav-dropdown-background-color);
     display: block;
     position: absolute;
@@ -1028,11 +1028,11 @@ section,
 # Services Section
 --------------------------------------------------------------*/
 .services .service-item {
-  background-color: var(--surface-color);
+  background-color: #ffffffe5;
   box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.1);
   padding: 60px 30px 60px 70px;
   transition: all ease-in-out 0.3s;
-  border-radius: 18px;
+  border-radius: 5px;
   height: 100%;
   position: relative;
   overflow: hidden;
@@ -1088,6 +1088,8 @@ section,
   display: inline-block;
   padding: 8px 20px 10px 20px;
   margin: 0;
+  border-radius: 18px;
+
   font-size: 15px;
   font-weight: 500;
   line-height: 1;
@@ -1133,6 +1135,9 @@ section,
   transition: all ease-in-out 0.5s;
   background: color-mix(in srgb, var(--surface-color), transparent 10%);
   padding: 15px;
+  border-radius: 18px;
+
+
 }
 
 .portfolio .portfolio-item .portfolio-info h4 {
@@ -1157,6 +1162,8 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   transition: 0.3s;
   line-height: 0;
+  border-radius: 18px;
+
 }
 
 .portfolio .portfolio-item .portfolio-info .preview-link:hover,
@@ -1177,42 +1184,30 @@ section,
 /*--------------------------------------------------------------
 # Icon-Box customer cards Section
 --------------------------------------------------------------*/
-.hero .icon-boxes {
+.icon-box {
+  width: 100%;
+  max-width: 300px; /* Set a maximum width */
+  height: 400px; /* Set a fixed height */
+  padding: 20px; /* Set consistent padding */
+  background-color: #bfcbdc;
+  border-radius: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
-  padding-bottom: 40px;
-  z-index: 5;
+  align-items: center;
+  text-align: center;
+  margin: 10px; /* Add margin for spacing between boxes */
 }
 
-@media (min-width: 1200px) {
-  .hero .icon-boxes:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: calc(50% + 20px);
-    background-color: var(--default-color);
-    border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  }
+.icon-box img {
+  max-width: 200px; /* Set a maximum width for images */
+  margin-bottom: 20px; /* Add margin below images */
 }
 
-
-.hero .icon-box {
-    flex: 1 1 calc(20% - 10px); /* Adjust the width to 20% and add some margin */
-    margin: 5px;
-    padding: 50px 30px;
-    position: relative;
-    overflow: hidden;
-    background: var(--background-color);
-    box-shadow: 0 0 29px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    border-radius: 8px;
-    z-index: 1;
-    height: 100%;
-    text-align: center;
+.icon-box p {
+  margin: 10px 0; /* Add margin for paragraphs */
 }
+
 
 .hero .icon-box .title {
   font-weight: 700;
@@ -1230,15 +1225,6 @@ section,
   transition: 0.3s;
 }
 
-.hero .icon-box .icon {
-  margin-bottom: 20px;
-  padding-top: 10px;
-  display: inline-block;
-  transition: all 0.3s ease-in-out;
-  font-size: 48px;
-  line-height: 1;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-}
 
 .hero .icon-box:hover {
   background-color: color-mix(in srgb, var(--background-color), white 10%);
@@ -1254,12 +1240,12 @@ section,
 # Testimonials Section
 --------------------------------------------------------------*/
 .testimonials .testimonial-item {
-  background-color: var(--surface-color);
+  background-color: rgba(255, 255, 255, 0.898);
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   box-sizing: content-box;
   padding: 30px;
   margin: 30px 15px;
-  border-radius: 5;
+  border-radius: 5px;
   position: relative;
   height: 100%;
 }
@@ -1344,7 +1330,7 @@ section,
 
   .testimonials .testimonial-item {
     padding: 30px;
-    border-radius: 5;
+    border-radius: 5px;
     margin: 15px;
   }
 
@@ -2059,9 +2045,7 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
+/* .starter-section ruleset removed as it was empty */
 
 /*--------------------------------------------------------------
 # Widgets
@@ -2084,7 +2068,7 @@ section,
   background-color: color-mix(in srgb, var(--default-color), transparent 98%);
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .widget-item:last-child {

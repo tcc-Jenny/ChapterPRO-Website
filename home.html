@@ -37,6 +37,126 @@
   ======================================================== -->
 </head>
 
+<!-- Add these in the <head> or before </body> -->
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script type="text/babel">
+  const GlobeViewer = () => {
+    const mountRef = React.useRef(null);
+
+    React.useEffect(() => {
+      const width = mountRef.current.clientWidth;
+      const height = mountRef.current.clientHeight;
+
+      // Scene Setup
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf0f0f0);
+      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+      camera.position.set(0, 0, 5);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      mountRef.current.appendChild(renderer.domElement);
+
+      // Lighting
+      scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+
+      // Globe
+      const globeGeometry = new THREE.SphereGeometry(2, 64, 64);
+      const textureLoader = new THREE.TextureLoader();
+      const globeTexture = textureLoader.load('assets/textures/earthmap.jpg');
+      const globeMaterial = new THREE.MeshStandardMaterial({ map: globeTexture });
+      const globe = new THREE.Mesh(globeGeometry, globeMaterial);
+      scene.add(globe); // Add globe to the scene
+
+      // Orbit Controls
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.1;
+
+      let isUserInteracting = false;
+      controls.addEventListener('start', () => (isUserInteracting = true));
+      controls.addEventListener('end', () => (isUserInteracting = false));
+
+      // Convert Latitude/Longitude to 3D coordinates
+      const latLonToVector3 = (lat, lon, radius) => {
+        const phi = (90 - lat) * (Math.PI / 180);
+        const theta = (lon + 180) * (Math.PI / 180);
+
+        const x = -radius * Math.sin(phi) * Math.cos(theta);
+        const y = radius * Math.cos(phi);
+        const z = radius * Math.sin(phi) * Math.sin(theta);
+
+        return new THREE.Vector3(x, y, z);
+      };
+
+      // Load and add 3D pin model
+      // Load and add 3D pin model
+// Load and add 3D pin model
+const gltfLoader = new THREE.GLTFLoader();
+const add3DPin = (lat, lon) => {
+  gltfLoader.load(
+    'assets/models/map-pin.glb', // Path to the .glb pin model
+    (gltf) => {
+      const pin = gltf.scene;
+      pin.scale.set(1.50, 1.50, 1.50); // Adjust pin size
+
+      const position = latLonToVector3(lat, lon, 2.05); // Position slightly above the globe
+      pin.position.copy(position);
+
+      // Create a vector from the globe center to the pin
+      const globeCenter = new THREE.Vector3(0, 0, 0);
+      const direction = new THREE.Vector3().subVectors(position, globeCenter).normalize();
+
+      // Align the pin so its "bottom" points toward the globe center
+      pin.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction);
+
+      globe.add(pin); // Attach pin to the globe mesh
+    },
+    undefined,
+    (error) => console.error('Error loading pin model:', error)
+  );
+};
+
+      // Example pin locations
+      const pinLocations = [
+        { lat: 37.7749, lon: -122.4194 }, // San Francisco
+        { lat: 51.5074, lon: -0.1278 },  // London
+        { lat: 35.6895, lon: 139.6917 }, // Tokyo
+        { lat: -33.8688, lon: 151.2093 }, // Sydney
+        { lat: 43.6921, lon: -116.4935 },
+      ];
+
+      pinLocations.forEach(({ lat, lon }) => add3DPin(lat, lon));
+
+      // Animation loop
+      const animate = () => {
+        requestAnimationFrame(animate);
+        if (!isUserInteracting) globe.rotation.y += 0.0015; // Auto-rotate the globe (pins move with it)
+        controls.update();
+        renderer.render(scene, camera);
+      };
+
+      animate();
+
+      // Cleanup
+      return () => {
+        mountRef.current.removeChild(renderer.domElement);
+      };
+    }, []);
+
+    return <div ref={mountRef} style={{ width: '100%', height: '100%' }} />;
+  };
+
+  ReactDOM.render(<GlobeViewer />, document.getElementById('globe-root'));
+</script>
+
 <body class="home-page">
   <!-- ======= Header ======= -->
 
@@ -57,16 +177,17 @@
           <li><a href="#pricing">Pricing</a></li>
           <li class="dropdown"><a href="features.html#easy"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#">Membership Management</a></li>
-              <li><a href="#">Group Management</a></li>
-              <li><a href="#">Event Management</a></li>
-              <li><a href="#">Communication</a></li>
-              <li><a href="#">Mobile Web App</a></li>
-              <li><a href="#">Reporting</a></li>
-              <li><a href="#">Onboarding/Support</a></li>
+              <li><a href="features.html#member">Membership Management</a></li>
+              <li><a href="features.html#group">Group Management</a></li>
+              <li><a href="features.html#event">Event Management</a></li>
+              <li><a href="features.html#communication">Communication</a></li>
+              <li><a href="features.html#mobile">Mobile Web App</a></li>
+              <li><a href="features.html#reporting">Reporting</a></li>
+              <li><a href="features.html#onboarding">Onboarding/Support</a></li>
               <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>
+          <li><a href="graphics.html#graphics">Graphic Services</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -151,6 +272,15 @@
         <div style="text-align: center;">
           <img src="assets/img/global infographic.png" alt="" style="width: 650px; height: auto;">
         </div>
+        <section id="globe-section" class="padd-section text-center">
+          <div class="container" data-aos="fade-up">
+            <div class="section-title text-center">
+              <h2>Interactive Globe</h2>
+              <p class="separator">Explore the interactive 3D globe.</p>
+            </div>
+            <div id="globe-root" style="width: 100%; height: 500px;"></div>
+          </div>
+        </section>
 
         </div>
 
@@ -381,7 +511,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
-        <p>What we do offer</p>
+        <p>Amazing Features</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -444,7 +574,7 @@
               <a href="features.html#reporting" class="stretched-link">
                 <h3>Reporting</h3>
               </a>
-              <p style="font-size: 18px;">Reporting Redefined: Powerful, Precise, Proactive. Single event registration, cumulative attendance, site access reports, email tracking, and more.</p>
+              <p style="font-size: 18px;">Reporting Redefined: Powerful, Precise, Proactive. Single event registration, cumulative attendance, site access reports, email tracking, and much more.</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -472,14 +602,14 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p>Some of our customers/organizations</p>
+        <p>Customers/organizations</p>
     
       </div><!-- End Section Title -->
-      <div class="container">
+      <div class="container" >
         <div class="row justify-content-center">
           <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%;">
-          <img src="assets/icons/ypo icon.png" alt="">
+            <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+              <img src="assets/icons/ypo icon.png" alt="">
           <p style="font-size: 35px;">YPO</p>
           <p style="font-size: 18px;">Young Presidents' Organization<br>
             68% of their global leadership community with local and regional chapters use ChapterPRO.</p>
@@ -487,27 +617,25 @@
           </div><!--End Icon Box -->
 
           <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%;">
-          <img src="assets/icons/eo icon.png" alt="">
+            <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+              <img src="assets/icons/eo icon.png" alt="">
           <p style="font-size: 35px;">EO</p>
           <p style="font-size: 18px;">Entrepreneurs' Organization ia a dynamic peer-to-peer netowrk for member engagement and exclusive events for local and regioanal chapters.</p>
         </div>
           </div><!--End Icon Box -->
 
           <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%;">
-          <img src="assets/icons/comp icon.png" alt="">
+            <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+              <img src="assets/icons/comp icon.png" alt="">
           <p style="font-size: 35px;">Companies</p>
           <p style="font-size: 18px;">Financial Advisors, Mentoring, Entrepreneurial</p>
         </div>
           </div><!--End Icon Box -->
-        </div>
-
-        <div class="container">
+       
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%;">
-            <img src="assets/icons/yng icon.png" alt="">
+              <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+                <img src="assets/icons/yng icon.png" alt="">
             <p style="font-size: 35px;">YNG</p>
             <p style="font-size: 18px;">YPO Next Generation<br>
               A global leadership community with local and regional chapters.</p>
@@ -515,16 +643,16 @@
             </div><!--End Icon Box -->
   
             <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%;">
-            <img src="assets/icons/org icon.png" alt="">
+              <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+                <img src="assets/icons/org icon.png" alt="">
             <p style="font-size: 35px;">Organizations</p>
             <p style="font-size: 18px;">Economic Clubs are managing memberships, directories, and events efficiently with ChapterPRO's all-in-one platform.</p>
           </div>
             </div><!--End Icon Box -->
   
             <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%;">
-            <img src="assets/icons/social icon.png" alt="">
+              <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+                <img src="assets/icons/social icon.png" alt="">
             <p style="font-size: 35px;">Social Clubs</p>
             <p style="font-size: 18px;">Bringing members together with ChapterPRO's event planning and communication tools.</p>
           </div>
