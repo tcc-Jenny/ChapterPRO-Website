@@ -172,21 +172,22 @@ const add3DPin = (lat, lon) => {
         <ul>
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
+          <li class="dropdown"><a href="home.html#features"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+            <li><a href="features.html#member">Membership Management</a></li>
+            <li><a href="features.html#group">Group Management</a></li>
+            <li><a href="features.html#event">Event Management</a></li>
+            <li><a href="features.html#communication">Communication</a></li>
+            <li><a href="features.html#mobile">Mobile Web App</a></li>
+            <li><a href="features.html#reporting">Reporting</a></li>
+            <li><a href="features.html#onboarding">Onboarding/Support</a></li>
+            </ul>
+          <li class="dropdown"><a href="home.html#portfolio"><span>Portfolio</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+            <li><a href="portfolio.html">Customers/Organizations</a></li>
+            </ul>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li class="dropdown"><a href="features.html#easy"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="features.html#member">Membership Management</a></li>
-              <li><a href="features.html#group">Group Management</a></li>
-              <li><a href="features.html#event">Event Management</a></li>
-              <li><a href="features.html#communication">Communication</a></li>
-              <li><a href="features.html#mobile">Mobile Web App</a></li>
-              <li><a href="features.html#reporting">Reporting</a></li>
-              <li><a href="features.html#onboarding">Onboarding/Support</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
           <li><a href="graphics.html#graphics">Graphic Services</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -288,8 +289,8 @@ const add3DPin = (lat, lon) => {
 
     </section><!-- /About Section -->
 
-    <!-- Features Section -->
-    <section id="features" class="features section">
+    <!-- Org Exapmles Section -->
+    <section id="org examples" class="features section">
 
       <div class="container">
 
@@ -505,8 +506,8 @@ const add3DPin = (lat, lon) => {
 
     </section><!-- /Call To Action Section -->
 
-    <!-- Services Section -->
-    <section id="services" class="services section">
+    <!-- Features Section -->
+    <section id="features" class="services section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -597,7 +598,7 @@ const add3DPin = (lat, lon) => {
     </section><!-- /Services Section -->
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section">
+    <section id="portfolio" class="PortfolioCustomers section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -605,59 +606,59 @@ const add3DPin = (lat, lon) => {
         <p>Customers/organizations</p>
     
       </div><!-- End Section Title -->
-      <div class="container" >
-        <div class="row justify-content-center">
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative" style="background-color: #bfcbdc; display: flex; flex-direction: column; align-items: center; text-align: center;">
               <img src="assets/icons/ypo icon.png" alt="">
-          <p style="font-size: 35px;">YPO</p>
-          <p style="font-size: 18px;">Young Presidents' Organization<br>
-            68% of their global leadership community with local and regional chapters use ChapterPRO.</p>
-        </div>
-          </div><!--End Icon Box -->
+            <a href="portfolio.html#features-tab-2" class="stretched-link"></a>
+              <p style="font-size: 28px; margin: 10px 0 5px; line-height: 28px;">Young Presidents' Organization</p>
+              <p style="font-size: 18px; text-align: justify;">An organization networking peer-to-peer learning and idea exchange among presidents, chairpersons, or CEO's with more than 36,000 members in more than 142 companies.</p>
+            </div>
+          </div>
+      
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative" style="background-color: #bfcbdc; display: flex; flex-direction: column; align-items: center; text-align: center;">
+              <img src="assets/icons/yng icon.png" alt="">
+              <p style="font-size: 28px; margin: 10px 0 5px; line-height: 28px;">YPO Next Generation</p>
+              <p style="font-size: 18px;">A global leadership community with local and regional chapters.
+              </p>
+            </div>
+          </div>
 
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative" style="background-color: #bfcbdc; display: flex; flex-direction: column; align-items: center; text-align: center;">
               <img src="assets/icons/eo icon.png" alt="">
-          <p style="font-size: 35px;">EO</p>
-          <p style="font-size: 18px;">Entrepreneurs' Organization ia a dynamic peer-to-peer netowrk for member engagement and exclusive events for local and regioanal chapters.</p>
-        </div>
-          </div><!--End Icon Box -->
+              <p style="font-size: 28px; margin: 10px 0 5px; line-height: 28px;">Entrepreneurs' Organization</p>
+              <p style="font-size: 18px;">A dynamic peer-to-peer network for member engagement and exclusive events for local and regional chapters.</p>
+            </div>
+          </div>
 
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative" style="background-color: #bfcbdc; display: flex; flex-direction: column; align-items: center; text-align: center;">
               <img src="assets/icons/comp icon.png" alt="">
-          <p style="font-size: 35px;">Companies</p>
-          <p style="font-size: 18px;">Financial Advisors, Mentoring, Entrepreneurial</p>
+              <p style="font-size: 28px; margin: 10px 0 5px; line-height: 28px;">Companies</p>
+              <p style="font-size: 18px;">Financial Advisors, Mentoring, Entrepreneurial</p>
+            </div>
+          </div>
+           
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item position-relative" style="background-color: #bfcbdc; display: flex; flex-direction: column; align-items: center; text-align: center;">
+              <img src="assets/icons/org icon.png" alt="">
+              <p style="font-size: 28px; margin: 10px 0 5px; line-height: 28px;">Organizations</p>
+              <p style="font-size: 18px;">Economic Clubs are managing memberships, directories, and events efficiently with ChapterPRO's all-in-one platform.</p>
+            </div>
+          </div>
+      
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item position-relative" style="background-color: #bfcbdc; display: flex; flex-direction: column; align-items: center; text-align: center;">
+              <img src="assets/icons/social icon.png" alt="">
+              <p style="font-size: 28px; margin: 10px 0 5px; line-height: 28px;">Social Clubs</p>
+              <p style="font-size: 18px;">Bringing members together with ChapterPRO's event planning and communication tools.</p>
+            </div>
+          </div>
         </div>
-          </div><!--End Icon Box -->
-       
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
-                <img src="assets/icons/yng icon.png" alt="">
-            <p style="font-size: 35px;">YNG</p>
-            <p style="font-size: 18px;">YPO Next Generation<br>
-              A global leadership community with local and regional chapters.</p>
-          </div>
-            </div><!--End Icon Box -->
-  
-            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
-                <img src="assets/icons/org icon.png" alt="">
-            <p style="font-size: 35px;">Organizations</p>
-            <p style="font-size: 18px;">Economic Clubs are managing memberships, directories, and events efficiently with ChapterPRO's all-in-one platform.</p>
-          </div>
-            </div><!--End Icon Box -->
-  
-            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon-box text-center p-4" style="background-color: #bfcbdc; height: 100%; border-radius: 5px;">
-                <img src="assets/icons/social icon.png" alt="">
-            <p style="font-size: 35px;">Social Clubs</p>
-            <p style="font-size: 18px;">Bringing members together with ChapterPRO's event planning and communication tools.</p>
-          </div>
-            </div><!--End Icon Box -->
-      </div>
+      </div>      
     </section><!-- /Portfolio Section -->
 
     <!-- Testimonials Section -->
