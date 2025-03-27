@@ -253,6 +253,19 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hash = window.location.hash;
+  
+      if (hash && document.querySelector(`.nav-tabs [data-bs-target="${hash}"]`)) {
+        const triggerEl = document.querySelector(`.nav-tabs [data-bs-target="${hash}"]`);
+        const tab = new bootstrap.Tab(triggerEl);
+        tab.show();
+      }
+    });
+  </script>
+  
+
 </body>
 
 </html>
